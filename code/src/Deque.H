@@ -5,7 +5,7 @@ using namespace util;
 
 template <class T>
 class Deque{
-    private:
+    protected:
         Node<T>* mFront;
         Node<T>* mBack;
         int mSize;

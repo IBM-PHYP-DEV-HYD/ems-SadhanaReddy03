@@ -45,7 +45,7 @@ namespace util{
         ECE
     };
 
-    // Original Deque enums (keeping for backward compatibility)
+    // Original Deque enums
     enum DequeType {
         INT=1,
         STRING,
