@@ -1,0 +1,22 @@
+#ifndef XYZ_CONTRACTOR_EMPLOYEE_H
+#define XYZ_CONTRACTOR_EMPLOYEE_H
+#include "XyzEmployee.H"
+#include <iostream>
+using namespace std;
+
+class XyzContractorEmployee : public XyzEmployee {
+    private:
+        Agency mAgency;
+    public:
+        XyzContractorEmployee(string nameParm, string idParm,Gender genderParm,Date dobParm, Date dojParm, Agency agencyParm) : XyzEmployee(nameParm, idParm, CONTRACTOR, genderParm, dobParm, dojParm), mAgency(agencyParm) {
+        }
+        Agency getAgency() const {
+            return mAgency;
+        }
+        void printEmployeeDetails() const override {
+            XyzEmployee::printEmployeeDetails();
+            cout << "Agency: " <<  mAgency << endl;
+        }
+        virtual ~XyzContractorEmployee() {}
+};
+#endif
