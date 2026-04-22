@@ -110,5 +110,11 @@ namespace util{
             Node(T valueParm)
             : mData(valueParm), mNext(nullptr),mPrev(nullptr) {}
     };
+
+    struct Date {
+        int day;
+        int month;
+        int year;
+    };
 }
 #endif
