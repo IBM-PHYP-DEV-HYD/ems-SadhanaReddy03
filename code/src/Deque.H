@@ -1,6 +1,7 @@
 #ifndef DEQUE_H
 #define DEQUE_H
 #include"utils.H"
+#include<stdexcept>
 using namespace util;
 
 template <class T>
@@ -100,7 +101,6 @@ void Deque<T> :: popBack(){
     removes last element from deque
     */
     if(empty()){
-        cout<<"Deque is empty";
         return;
     }
     Node<T>* sTemp;
@@ -109,7 +109,7 @@ void Deque<T> :: popBack(){
     if(mBack){
         mBack->mNext=nullptr;
     }
-    else{    
+    else{
         mFront=nullptr;
     }
     delete sTemp;
@@ -122,7 +122,6 @@ void Deque<T>:: popFront(){
     removes first element from deque
     */
     if(empty()){
-        cout<<"Deque is Empty";
         return;
     }
     Node<T>* sTemp;
@@ -131,7 +130,7 @@ void Deque<T>:: popFront(){
     if(mFront){
         mFront->mPrev=nullptr;
     }
-    else{    
+    else{
         mBack=nullptr;
     }
     delete sTemp;
@@ -146,7 +145,6 @@ T Deque<T> :: front(){
     if(empty()) {
         throw runtime_error("Deque is empty");
     }
-    cout<<"First element : ";
     return mFront->mData;
 }
 
@@ -158,7 +156,6 @@ T Deque<T> :: back(){
     if(empty()) {
         throw runtime_error("Deque is empty");
     }
-    cout<<"Last Element: ";
     return mBack->mData;
 }
 
@@ -167,7 +164,6 @@ int Deque<T> :: size(){
     /*
     returns current number of elements in deque
     */
-    cout<<"Size of Deque: ";
     return mSize;
 }
 
@@ -177,7 +173,6 @@ void Deque<T> :: clear(){
     removes all the elements from the deque
     */
     if(empty()){
-        cout<<"Deque is Empty";
         return;
     }
     while(!empty()){
