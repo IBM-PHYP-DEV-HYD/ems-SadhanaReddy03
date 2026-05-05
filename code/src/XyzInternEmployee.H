@@ -9,18 +9,10 @@ class XyzInternEmployee : public XyzEmployee {
         College mCollege;
         Branch mBranch;
     public:
-        XyzInternEmployee(string nameParm, string idParm, Gender genderParm, Date dobParm, Date dojParm, College collegeParm, Branch branchParm) : XyzEmployee(nameParm, idParm, INTERN, genderParm, dobParm, dojParm), mCollege(collegeParm), mBranch(branchParm) {}
-        College getCollege() const {
-            return mCollege;
-        }
-        Branch getBranch() const {
-            return mBranch;
-        }
-        void printEmployeeDetails() const override {
-            XyzEmployee::printEmployeeDetails();
-            cout << "College: " << collegeToString(mCollege) << endl;
-            cout << "Branch: " << branchToString(mBranch) << endl;
-        }
-        virtual ~XyzInternEmployee() {}
+        XyzInternEmployee(string nameParm, string idParm, Gender genderParm, Date dobParm, Date dojParm, College collegeParm, Branch branchParm);
+        College getCollege() const;
+        Branch getBranch() const;
+        void printEmployeeDetails() const override;
+        virtual ~XyzInternEmployee();
 };
 #endif

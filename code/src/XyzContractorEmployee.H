@@ -8,15 +8,9 @@ class XyzContractorEmployee : public XyzEmployee {
     private:
         Agency mAgency;
     public:
-        XyzContractorEmployee(string nameParm, string idParm,Gender genderParm,Date dobParm, Date dojParm, Agency agencyParm) : XyzEmployee(nameParm, idParm, CONTRACTOR, genderParm, dobParm, dojParm), mAgency(agencyParm) {
-        }
-        Agency getAgency() const {
-            return mAgency;
-        }
-        void printEmployeeDetails() const override {
-            XyzEmployee::printEmployeeDetails();
-            cout << "Agency: " <<  agencyToString(mAgency) << endl;
-        }
-        virtual ~XyzContractorEmployee() {}
+        XyzContractorEmployee(string nameParm, string idParm,Gender genderParm,Date dobParm, Date dojParm, Agency agencyParm);
+        Agency getAgency() const ;
+        void printEmployeeDetails() const override;
+        virtual ~XyzContractorEmployee();
 };
 #endif
