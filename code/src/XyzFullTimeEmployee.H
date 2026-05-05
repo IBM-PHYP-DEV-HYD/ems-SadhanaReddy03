@@ -7,9 +7,10 @@ class XyzFullTimeEmployee : public XyzEmployee {
     private:
     int mLeavesAvailed;
     public:
-    XyzFullTimeEmployee(string nameParm, string idParm, Gender genderParm, Date dobParm, Date dojParm) : XyzEmployee(nameParm, idParm, FULL_TIME, genderParm, dobParm, dojParm), mLeavesAvailed(0) {
+    XyzFullTimeEmployee(string nameParm, string idParm, Gender genderParm, Date dobParm, Date dojParm, int leavesParm) : XyzEmployee(nameParm, idParm, FULL_TIME, genderParm, dobParm, dojParm), mLeavesAvailed(leavesParm) {
     }
     void addLeaves(int leavesParm) {
+        if(leavesParm <= 0) return;
         mLeavesAvailed += leavesParm;
         if(mLeavesAvailed > 22) {
             mLeavesAvailed = 22;  
@@ -20,9 +21,9 @@ class XyzFullTimeEmployee : public XyzEmployee {
         cout << "Leaves Availed: " << mLeavesAvailed << endl;
         cout<< "Leaves Left: " << (22 - mLeavesAvailed) << endl;
     }
+    int getLeavesAvailed() const {
+        return mLeavesAvailed;
+    }
     virtual ~XyzFullTimeEmployee() {}
 };
-
-
-
 #endif

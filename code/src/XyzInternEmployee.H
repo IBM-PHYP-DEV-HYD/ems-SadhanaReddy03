@@ -18,10 +18,9 @@ class XyzInternEmployee : public XyzEmployee {
         }
         void printEmployeeDetails() const override {
             XyzEmployee::printEmployeeDetails();
-            cout << "College: " << mCollege << endl;
-            cout << "Branch: " << mBranch << endl;
+            cout << "College: " << collegeToString(mCollege) << endl;
+            cout << "Branch: " << branchToString(mBranch) << endl;
         }
         virtual ~XyzInternEmployee() {}
 };
-
 #endif

@@ -58,9 +58,9 @@ class XyzEmployee : public XyzEmployeeIF {
     virtual void printEmployeeDetails() const override {
         cout << "Name: " << mName << endl;
         cout << "ID: " << mID << endl;
-        cout << "Type: " << (mType == FULL_TIME ? "FullTime" : "Other") << std::endl;
-        cout << "Gender: " << mGender << endl;
-        cout << "Status: " << mStatus << endl;
+        cout << "Type: " << typeToString(mType) << endl;
+        cout << "Gender: " << genderToString(mGender) << endl;
+        cout << "Status: " << statusToString(mStatus) << endl;
 
         cout << "DOB: " << mDOB.day << "/" << mDOB.month << "/" << mDOB.year << endl;
         cout << "DOJ: " << mDOJ.day << "/" << mDOJ.month << "/" << mDOJ.year << endl;

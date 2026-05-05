@@ -15,7 +15,7 @@ class XyzContractorEmployee : public XyzEmployee {
         }
         void printEmployeeDetails() const override {
             XyzEmployee::printEmployeeDetails();
-            cout << "Agency: " <<  mAgency << endl;
+            cout << "Agency: " <<  agencyToString(mAgency) << endl;
         }
         virtual ~XyzContractorEmployee() {}
 };

@@ -5,6 +5,36 @@
 using namespace std;
 
 namespace util{
+    enum MainMenu {
+        ADD_EMP = 1,
+        REMOVE_EMP,
+        EMP_DETAILS,
+        OTHERS,
+        EXIT_APP
+    };
+
+    enum AddMenu {
+        ADD_RANDOM = 1,
+        ADD_TYPE,
+        ADD_BACK
+    };
+
+    enum DetailsMenu {
+        ALL_EMP = 1,
+        BY_TYPE,
+        BY_GENDER,
+        BY_STATUS,
+        BY_ID,
+        DETAILS_BACK
+    };
+
+    enum OthersMenu {
+        ADD_LEAVES = 1,
+        CONVERT_INTERN,
+        SEARCH_ID,
+        SEARCH_NAME,
+        OTHERS_BACK
+    };
     // Employee Management System Enums
     enum Gender {
         MALE = 1,
@@ -43,6 +73,63 @@ namespace util{
         CSE = 1,
         CSIT,
         ECE
+    };
+    inline string genderToString(Gender g) {
+        return (g == MALE) ? "Male" : "Female";
+    }
+
+    inline string statusToString(EmployeeStatus s) {
+        if (s == ACTIVE) return "Active";
+        if (s == INACTIVE) return "Inactive";
+        return "Resigned";
+    }
+
+    inline string typeToString(EmployeeType t) {
+        if (t == FULL_TIME) return "Full-Time";
+        if (t == CONTRACTOR) return "Contractor";
+        return "Intern";
+    }
+
+    inline string agencyToString(Agency a) {
+        if (a == AVENGERS) return "Avengers";
+        if (a == JUSTICE_LEAGUE) return "Justice League";
+        return "X-Men";
+    }
+
+    inline string collegeToString(College c) {
+        switch (c) {
+            case IIT_DELHI: return "IIT Delhi";
+            case IIT_MUMBAI: return "IIT Mumbai";
+            case IIT_KANPUR: return "IIT Kanpur";
+            case IIT_HYDERABAD: return "IIT Hyderabad";
+            case NIT_WARANGAL: return "NIT Warangal";
+            case NIT_TRICHY: return "NIT Trichy";
+            case IIIT_HYDERABAD: return "IIIT Hyderabad";
+        }
+        return " ";
+    }
+
+    inline string branchToString(Branch b) {
+        if (b == CSE) return "CSE";
+        if (b == CSIT) return "CSIT";
+        return "ECE";
+    }
+
+
+    template <class T>
+    class Node{
+        public:
+            T mData;
+            Node<T>* mNext;
+            Node<T>* mPrev;
+            Node(T valueParm)
+            : mData(valueParm), mNext(nullptr),mPrev(nullptr) {}
+    };
+
+    struct Date {
+        int day;
+        int month;
+        int year;
     };
 
     // Original Deque enums
@@ -100,21 +187,5 @@ namespace util{
         cout<<"Invalid input, "<<MessageParm;
         }
     }
-
-    template <class T>
-    class Node{
-        public:
-            T mData;
-            Node<T>* mNext;
-            Node<T>* mPrev;
-            Node(T valueParm)
-            : mData(valueParm), mNext(nullptr),mPrev(nullptr) {}
-    };
-
-    struct Date {
-        int day;
-        int month;
-        int year;
-    };
 }
 #endif
