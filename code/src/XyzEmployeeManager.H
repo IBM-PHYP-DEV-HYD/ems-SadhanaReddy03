@@ -17,7 +17,7 @@ class XyzEmployeeManager {
         void addEmployee();
         void addLeavesToAllFullTimeEmployees(int leavesParm);
         void convertInternToFullTime(const string& idParm);
-        void addEmployee(EmployeeType type);
+        void addEmployee(EmployeeType typeParm);
         bool removeEmployee(const string& idParm);
         void printAllEmployees();
         void printByType(EmployeeType typeParm);

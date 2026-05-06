@@ -16,62 +16,21 @@ class XyzEmployee : public XyzEmployeeIF {
         Date mDOJ;
         Date mDOL;
     public:
-        XyzEmployee(string nameParm, string idParm, EmployeeType typeParm, Gender genderParm, Date dobParm, Date dojParm) : mName(nameParm), mID(idParm), mType(typeParm), mGender(genderParm), mDOB(dobParm), mDOJ(dojParm) {
-        mStatus = ACTIVE;
-        // DOL = 0/0/0 (NA)
-        mDOL={0,0,0};
-    }
-    string getName() const override {
-        return mName;
-    }
-    string getID() const override {
-        return mID;
-    }
-    EmployeeType getType() const override {
-        return mType;
-    }
-    Gender getGender() const override {
-        return mGender;
-    }
-    EmployeeStatus getStatus() const override {
-        return mStatus;
-    }
-    Date getDOB() const override {
-        return mDOB;
-    }
-    Date getDOJ() const override {
-        return mDOJ;
-    }
-    Date getDOL() const override {
-        return mDOL;
-    }
+    XyzEmployee(string nameParm, string idParm, EmployeeType typeParm, Gender genderParm, Date dobParm, Date dojParm);
+    string getName() const override;
+    string getID() const override;
+    EmployeeType getType() const override;
+    Gender getGender() const override;
+    EmployeeStatus getStatus() const override;
+    Date getDOB() const override;
+    Date getDOJ() const override;
+    Date getDOL() const override;
 
-    void setStatus(EmployeeStatus statusParm) override {
-        mStatus = statusParm;
-    }
-    void setDOJ(const Date& dojParm) override {
-        mDOJ = dojParm;
-    }
-    void setDOL(const Date& dolParm) override {
-        mDOL = dolParm;
-    }
-    virtual void printEmployeeDetails() const override {
-        cout << "Name: " << mName << endl;
-        cout << "ID: " << mID << endl;
-        cout << "Type: " << typeToString(mType) << endl;
-        cout << "Gender: " << genderToString(mGender) << endl;
-        cout << "Status: " << statusToString(mStatus) << endl;
-
-        cout << "DOB: " << mDOB.day << "/" << mDOB.month << "/" << mDOB.year << endl;
-        cout << "DOJ: " << mDOJ.day << "/" << mDOJ.month << "/" << mDOJ.year << endl;
-
-        if (mDOL.year != 0) {
-            cout << "DOL: " << mDOL.day << "/" << mDOL.month << "/" << mDOL.year << endl;
-        } else {
-            cout << "DOL: NA" << endl;
-        }
-    }
-    virtual ~XyzEmployee() {}
+    void setStatus(EmployeeStatus statusParm) override;
+    void setDOJ(const Date& dojParm) override;
+    void setDOL(const Date& dolParm) override;
+    virtual void printEmployeeDetails() const override;
+    virtual ~XyzEmployee();
 };
 
 #endif

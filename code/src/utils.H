@@ -5,6 +5,8 @@
 using namespace std;
 
 namespace util{
+
+      // Employee Management System Enums
     enum MainMenu {
         ADD_EMP = 1,
         REMOVE_EMP,
@@ -35,7 +37,7 @@ namespace util{
         SEARCH_NAME,
         OTHERS_BACK
     };
-    // Employee Management System Enums
+  
     enum Gender {
         MALE = 1,
         FEMALE
@@ -74,30 +76,30 @@ namespace util{
         CSIT,
         ECE
     };
-    inline string genderToString(Gender g) {
-        return (g == MALE) ? "Male" : "Female";
+    inline string genderToString(Gender gParm) {
+        return (MALE == gParm) ? "Male" : "Female";
     }
 
-    inline string statusToString(EmployeeStatus s) {
-        if (s == ACTIVE) return "Active";
-        if (s == INACTIVE) return "Inactive";
+    inline string statusToString(EmployeeStatus sParm) {
+        if (sParm == ACTIVE) return "Active";
+        if (sParm == INACTIVE) return "Inactive";
         return "Resigned";
     }
 
-    inline string typeToString(EmployeeType t) {
-        if (t == FULL_TIME) return "Full-Time";
-        if (t == CONTRACTOR) return "Contractor";
+    inline string typeToString(EmployeeType tParm) {
+        if (tParm == FULL_TIME) return "Full-Time";
+        if (tParm == CONTRACTOR) return "Contractor";
         return "Intern";
     }
 
-    inline string agencyToString(Agency a) {
-        if (a == AVENGERS) return "Avengers";
-        if (a == JUSTICE_LEAGUE) return "Justice League";
+    inline string agencyToString(Agency aParm) {
+        if (aParm == AVENGERS) return "Avengers";
+        if (aParm == JUSTICE_LEAGUE) return "Justice League";
         return "X-Men";
     }
 
-    inline string collegeToString(College c) {
-        switch (c) {
+    inline string collegeToString(College cParm) {
+        switch (cParm) {
             case IIT_DELHI: return "IIT Delhi";
             case IIT_MUMBAI: return "IIT Mumbai";
             case IIT_KANPUR: return "IIT Kanpur";
@@ -109,9 +111,9 @@ namespace util{
         return " ";
     }
 
-    inline string branchToString(Branch b) {
-        if (b == CSE) return "CSE";
-        if (b == CSIT) return "CSIT";
+    inline string branchToString(Branch bParm) {
+        if (bParm == CSE) return "CSE";
+        if (bParm == CSIT) return "CSIT";
         return "ECE";
     }
 
@@ -127,9 +129,9 @@ namespace util{
     };
 
     struct Date {
-        int day;
-        int month;
-        int year;
+        int mDay;
+        int mMonth;
+        int mYear;
     };
 
     // Original Deque enums
@@ -165,7 +167,7 @@ namespace util{
     };
 
     template<typename T>
-    void readValue(T& valueParm,const string& MessageParm){
+    void readValue(T& valueParm,const string& messageParm){
         /*
         reads value of type T safely from input
         re-prompts until valid input is entered
@@ -178,13 +180,13 @@ namespace util{
                     return;
                 }
                 else{
-                    cout<<"Invalid Input, "<<MessageParm;
+                    cout<<"Invalid Input, "<<messageParm;
                     continue;
                 }
             }
             cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(),'\n');
-        cout<<"Invalid input, "<<MessageParm;
+        cout<<"Invalid input, "<<messageParm;
         }
     }
 }

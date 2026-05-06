@@ -4,7 +4,7 @@
 #include <random>
 
 using namespace std;
-using namespace util;
+// using namespace util;
 
 //Random Generator
 class RandomGenerator {
@@ -41,49 +41,49 @@ XyzEmployeeManager::~XyzEmployeeManager() {
 }
 
 void XyzEmployeeManager::addEmployee() {
-    static int counter = 1;
+    static int sCounter = 1;
 
-    EmployeeType type = (EmployeeType)rng.getInt(1, 3);
+    EmployeeType sType = (EmployeeType)rng.getInt(1, 3);
 
-    XyzEmployee* emp = XyzEmployeeFactory::createEmployee(counter, type);
-    counter++;
+    XyzEmployee* sEmp = XyzEmployeeFactory::createEmployee(sCounter, sType);
+    sCounter++;
 
-    int pos = rng.getInt(0, mActiveEmployees.size());
-    mActiveEmployees.insertAt(pos, emp);
+    int sPos = rng.getInt(0, mActiveEmployees.size());
+    mActiveEmployees.insertAt(sPos, sEmp);
 }
 
 
-void XyzEmployeeManager::addEmployee(EmployeeType type) {
-    static int counter = 1;
+void XyzEmployeeManager::addEmployee(EmployeeType typeParm) {
+    static int sCounter = 1;
 
-    XyzEmployee* emp = XyzEmployeeFactory::createEmployee(counter, type);
-    counter++;
+    XyzEmployee* sEmp = XyzEmployeeFactory::createEmployee(sCounter, typeParm);
+    sCounter++;
 
-    int pos = rng.getInt(0, mActiveEmployees.size());
-    mActiveEmployees.insertAt(pos, emp);
+    int sPos = rng.getInt(0, mActiveEmployees.size());
+    mActiveEmployees.insertAt(sPos, sEmp);
 }
 
 // Remove employee
 bool XyzEmployeeManager::removeEmployee(const string& idParm) {
-    for (int i = 0; i < mActiveEmployees.size(); i++) {
-        if (mActiveEmployees[i]->getID() == idParm) {
-            XyzEmployee* old = mActiveEmployees[i];
-            XyzEmployee* minimal = new XyzEmployee(
-                old->getName(),
-                old->getID(),
-                old->getType(),
-                old->getGender(),
-                old->getDOB(),
-                old->getDOJ()
+    for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
+        if (mActiveEmployees[sIndex]->getID() == idParm) {
+            XyzEmployee* sOld = mActiveEmployees[sIndex];
+            XyzEmployee* sMinimal = new XyzEmployee(
+                sOld->getName(),
+                sOld->getID(),
+                sOld->getType(),
+                sOld->getGender(),
+                sOld->getDOB(),
+                sOld->getDOJ()
             );
-            minimal->setStatus(RESIGNED);
-            Date dol = old->getDOJ();
-            dol.year += 2;
+            sMinimal->setStatus(RESIGNED);
+            Date sDol = sOld->getDOJ();
+            sDol.mYear += 2;
 
-            minimal->setDOL(dol);
-            mResignedEmployees.pushBack(minimal);
-            delete old;
-            mActiveEmployees.removeAt(i);
+            sMinimal->setDOL(sDol);
+            mResignedEmployees.pushBack(sMinimal);
+            delete sOld;
+            mActiveEmployees.removeAt(sIndex);
             return true;
         }
     }
@@ -98,8 +98,8 @@ void XyzEmployeeManager::printAllEmployees() {
     }
     if (mActiveEmployees.size() > 0) {
         cout << "\n--- Active / Inactive Employees ---\n";
-        for (int i = 0; i < mActiveEmployees.size(); i++) {
-            mActiveEmployees[i]->printEmployeeDetails();
+        for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
+            mActiveEmployees[sIndex]->printEmployeeDetails();
             cout << "----------------\n";
         }
     } else {
@@ -108,8 +108,8 @@ void XyzEmployeeManager::printAllEmployees() {
 
     if (mResignedEmployees.size() > 0) {
         cout << "\n--- Resigned Employees ---\n";
-        for (int i = 0; i < mResignedEmployees.size(); i++) {
-            mResignedEmployees[i]->printEmployeeDetails();
+        for (int sIndex = 0; sIndex < mResignedEmployees.size(); sIndex++) {
+            mResignedEmployees[sIndex]->printEmployeeDetails();
             cout << "----------------\n";
         }
     } else {
@@ -118,44 +118,44 @@ void XyzEmployeeManager::printAllEmployees() {
 }
 
 void XyzEmployeeManager::printByType(EmployeeType typeParm) {
-    bool found = false;
+    bool sFound = false;
 
-    for (int i = 0; i < mActiveEmployees.size(); i++) {
-        if (mActiveEmployees[i]->getType() == typeParm){
-            mActiveEmployees[i]->printEmployeeDetails();
+    for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
+        if (typeParm == mActiveEmployees[sIndex]->getType()){
+            mActiveEmployees[sIndex]->printEmployeeDetails();
             cout<<"--------------------------"<<endl;
-            found = true;
+            sFound = true;
         }
     }
-    if(!found) {
+    if(!sFound) {
         cout<<"No employees found for selected type. "<<endl;
     }
 }
 
 void XyzEmployeeManager::printByStatus(EmployeeStatus statusParm) {
-    bool found = false;
-    for (int i = 0; i < mActiveEmployees.size(); i++) {
-        if (mActiveEmployees[i]->getStatus() == statusParm){
-            mActiveEmployees[i]->printEmployeeDetails();
+    bool sFound = false;
+    for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
+        if (mActiveEmployees[sIndex]->getStatus() == statusParm){
+            mActiveEmployees[sIndex]->printEmployeeDetails();
             cout<<"---------------------------"<<endl;
-            found=true;
+            sFound=true;
         }
     }
-    if(!found) {
+    if(!sFound) {
         cout<<"No employees found for selected status. "<<endl;
     }
 }
 
 void XyzEmployeeManager::printByGender(Gender genderParm) {
-    bool found = false;
-    for (int i = 0; i < mActiveEmployees.size(); i++) {
-        if (mActiveEmployees[i]->getGender() == genderParm){
-            mActiveEmployees[i]->printEmployeeDetails();
+    bool sFound = false;
+    for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
+        if (mActiveEmployees[sIndex]->getGender() == genderParm){
+            mActiveEmployees[sIndex]->printEmployeeDetails();
             cout<<"--------------------------------------"<<endl;
-            found = true;
+            sFound = true;
         }
     }
-    if(!found) {
+    if(!sFound) {
         cout<<"No employees found for selected Gender. "<<endl;
     }
 }
@@ -165,85 +165,85 @@ void XyzEmployeeManager::printResignedEmployees() {
         cout << "No resigned employees.\n";
         return;
     }
-    for (int i = 0; i < mResignedEmployees.size(); i++) {
-        mResignedEmployees[i]->printEmployeeDetails();
+    for (int sIndex = 0; sIndex < mResignedEmployees.size(); sIndex++) {
+        mResignedEmployees[sIndex]->printEmployeeDetails();
     }
 }
 
 // Search
 XyzEmployee* XyzEmployeeManager::searchByID(const string& idParm) {
-    for (int i = 0; i < mActiveEmployees.size(); i++) {
-        if (mActiveEmployees[i]->getID() == idParm)
-            return mActiveEmployees[i];
+    for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
+        if (mActiveEmployees[sIndex]->getID() == idParm)
+            return mActiveEmployees[sIndex];
     }
-    for(int i = 0; i < mResignedEmployees.size(); i++) {
-        if (mResignedEmployees[i]->getID() == idParm)
-            return mResignedEmployees[i];
+    for(int sIndex = 0; sIndex < mResignedEmployees.size(); sIndex++) {
+        if (mResignedEmployees[sIndex]->getID() == idParm)
+            return mResignedEmployees[sIndex];
     }
     return nullptr;
 }
 
 
 void XyzEmployeeManager::searchByName(const string& nameParm) {
-    bool found = false;
+    bool sFound = false;
 
-    for (int i = 0; i < mActiveEmployees.size(); i++) {
-        if (mActiveEmployees[i]->getName().find(nameParm) != string::npos) {
-            mActiveEmployees[i]->printEmployeeDetails();
+    for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
+        if (mActiveEmployees[sIndex]->getName().find(nameParm) != string::npos) {
+            mActiveEmployees[sIndex]->printEmployeeDetails();
             cout << "----------------\n";
-            found = true;
+            sFound = true;
         }
     }
 
-    for (int i = 0; i < mResignedEmployees.size(); i++) {
-        if (mResignedEmployees[i]->getName().find(nameParm) != string::npos) {
-            mResignedEmployees[i]->printEmployeeDetails();
+    for (int sIndex = 0; sIndex < mResignedEmployees.size(); sIndex++) {
+        if (mResignedEmployees[sIndex]->getName().find(nameParm) != string::npos) {
+            mResignedEmployees[sIndex]->printEmployeeDetails();
             cout << "----------------\n";
-            found = true;
+            sFound = true;
         }
     }
 
-    if (!found) {
+    if (!sFound) {
         cout << "No employees found with given name.\n";
     }
 }
 
 // Other
-void XyzEmployeeManager::addLeavesToAllFullTimeEmployees(int n) {
-    if(n<=0) return;
-    for (int i = 0; i < mActiveEmployees.size(); i++) {
-        if (mActiveEmployees[i]->getType() == FULL_TIME) {
-            auto ft = dynamic_cast<XyzFullTimeEmployee*>(mActiveEmployees[i]);
-            if (ft) ft->addLeaves(n);
+void XyzEmployeeManager::addLeavesToAllFullTimeEmployees(int nLeavesParm) {
+    if(nLeavesParm<=0) return;
+    for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
+        if (mActiveEmployees[sIndex]->getType() == FULL_TIME) {
+            auto sFullTimeEmp = dynamic_cast<XyzFullTimeEmployee*>(mActiveEmployees[sIndex]);
+            if (sFullTimeEmp) sFullTimeEmp->addLeaves(nLeavesParm);
         }
     }
 }
 
 void XyzEmployeeManager::convertInternToFullTime(const string& idParm) {
-    for (int i = 0; i < mActiveEmployees.size(); i++) {
-        if (mActiveEmployees[i]->getID() == idParm &&
-            mActiveEmployees[i]->getType() == INTERN) {
+    for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
+        if (mActiveEmployees[sIndex]->getID() == idParm &&
+            mActiveEmployees[sIndex]->getType() == EmployeeType :: INTERN) {
 
-            auto intern = dynamic_cast<XyzInternEmployee*>(mActiveEmployees[i]);
-            if(!intern) return;
+            auto sInternEmp = dynamic_cast<XyzInternEmployee*>(mActiveEmployees[sIndex]);
+            if(!sInternEmp) return;
 
-            string oldID= intern->getID();
-            string newID = oldID.substr(0, oldID.size() - 1) + "F";
+            string sOldID= sInternEmp->getID();
+            string sNewID = sOldID.substr(0, sOldID.size() - 1) + "F";
 
 
-            XyzEmployee* ft = new XyzFullTimeEmployee(
-                intern->getName(),
-                newID,
-                intern->getGender(),
-                intern->getDOB(),
-                intern->getDOJ(),
+            XyzEmployee* sFullTimeEmp = new XyzFullTimeEmployee(
+                sInternEmp->getName(),
+                sNewID,
+                sInternEmp->getGender(),
+                sInternEmp->getDOB(),
+                sInternEmp->getDOJ(),
                 0
             );
-            ft->setDOL({0,0,0});
+            sFullTimeEmp->setDOL({0,0,0});
 
-            delete intern;
-            mActiveEmployees.removeAt(i);
-            mActiveEmployees.insertAt(i,ft);
+            delete sInternEmp;
+            mActiveEmployees.removeAt(sIndex);
+            mActiveEmployees.insertAt(sIndex,sFullTimeEmp);
             return;
         }
     }

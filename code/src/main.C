@@ -3,7 +3,7 @@
 #include <iostream>
 
 using namespace std;
-using namespace util;
+// using namespace util;
 
 void displayMainMenu() {
     cout << "\n========================================" << endl;
@@ -47,29 +47,29 @@ void displayOthersMenu() {
 }
 
 // Handlers
-void handleAddMenu(XyzEmployeeManager& manager) {
-    int choice;
+void handleAddMenu(XyzEmployeeManager& managerParm) {
+    int sChoice;
 
     while (true) {
         displayAddMenu();
-        readValue(choice, "Enter valid choice: ");
+        readValue(sChoice, "Enter valid choice: ");
 
-        switch (choice) {
-            case ADD_RANDOM:
-                manager.addEmployee();
+        switch (sChoice) {
+            case util :: ADD_RANDOM:
+                managerParm.addEmployee();
                 cout << "Employee added successfully.\n";
                 break;
 
-            case ADD_TYPE: {
-                int type;
+            case util :: ADD_TYPE: {
+                int sType;
                 cout << "Enter Type (1-FullTime, 2-Contractor, 3-Intern): ";
-                readValue(type, "Enter 1-3 only: ");
-                manager.addEmployee((EmployeeType)type);
+                readValue(sType, "Enter 1-3 only: ");
+                managerParm.addEmployee((EmployeeType)sType);
                 cout << "Employee added successfully.\n";
                 break;
             }
 
-            case ADD_BACK:
+            case util :: ADD_BACK:
                 return;
 
             default:
@@ -78,60 +78,60 @@ void handleAddMenu(XyzEmployeeManager& manager) {
     }
 }
 
-void handleDetailsMenu(XyzEmployeeManager& manager) {
-    int choice;
+void handleDetailsMenu(XyzEmployeeManager& managerParm) {
+    int sChoice;
 
     while (true) {
         displayDetailsMenu();
-        readValue(choice, "Enter valid choice: ");
+        readValue(sChoice, "Enter valid choice: ");
 
-        switch (choice) {
-            case ALL_EMP:
-                manager.printAllEmployees();
+        switch (sChoice) {
+            case util :: ALL_EMP:
+                managerParm.printAllEmployees();
                 break;
 
-            case BY_TYPE: {
-                int type;
+            case util :: BY_TYPE: {
+                int sType;
                 cout << "Enter Type (1-FullTime, 2-Contractor, 3-Intern): ";
-                readValue(type, "Enter 1-3 only: ");
-                manager.printByType((EmployeeType)type);
+                readValue(sType, "Enter 1-3 only: ");
+                managerParm.printByType((EmployeeType)sType);
                 break;
             }
 
-            case BY_GENDER: {
-                int gender;
+            case util :: BY_GENDER: {
+                int sGender;
                 cout << "Enter Gender (1-Male, 2-Female): ";
-                readValue(gender, "Enter 1 or 2: ");
-                manager.printByGender((Gender)gender);
+                readValue(sGender, "Enter 1 or 2: ");
+                managerParm.printByGender((Gender)sGender);
                 break;
             }
 
-            case BY_STATUS: {
-                int status;
+            case util :: BY_STATUS: {
+                int mStatus;
                 cout << "Enter Status (1-Active, 2-Inactive, 3-Resigned): ";
-                readValue(status, "Enter 1-3: ");
+                readValue(mStatus, "Enter 1-3: ");
 
-                if (status == RESIGNED)
-                    manager.printResignedEmployees();
+                if (util :: RESIGNED == mStatus)
+                    managerParm.printResignedEmployees();
                 else
-                    manager.printByStatus((EmployeeStatus)status);
+                    managerParm.printByStatus((EmployeeStatus)mStatus);
                 break;
             }
 
-            case BY_ID: {
-                string id;
+            case util :: BY_ID: {
+                string sId;
                 cout << "Enter Employee ID: ";
-                getline(cin >> ws, id);
+                getline(cin >> ws, sId);
 
-                XyzEmployee* emp = manager.searchByID(id);
-                if (emp)
-                    emp->printEmployeeDetails();
+                XyzEmployee* sEmp = managerParm.searchByID(sId);
+                if (sEmp)
+                    sEmp->printEmployeeDetails();
                 else
                     cout << "Employee not found.\n";
                 break;
             }
 
-            case DETAILS_BACK:
+            case util :: DETAILS_BACK:
                 return;
 
             default:
@@ -140,52 +140,52 @@ void handleDetailsMenu(XyzEmployeeManager& manager) {
     }
 }
 
-void handleOthersMenu(XyzEmployeeManager& manager) {
-    int choice;
+void handleOthersMenu(XyzEmployeeManager& managerParm) {
+    int sChoice;
 
     while (true) {
         displayOthersMenu();
-        readValue(choice, "Enter valid choice: ");
+        readValue(sChoice, "Enter valid choice: ");
 
-        switch (choice) {
-            case ADD_LEAVES: {
-                int n;
+        switch (sChoice) {
+            case util :: ADD_LEAVES: {
+                int sNLeaves;
                 cout << "Enter leaves to add: ";
-                readValue(n, "Enter positive number: ");
-                manager.addLeavesToAllFullTimeEmployees(n);
+                readValue(sNLeaves, "Enter positive number: ");
+                managerParm.addLeavesToAllFullTimeEmployees(sNLeaves);
                 break;
             }
 
-            case CONVERT_INTERN: {
-                string id;
+            case util :: CONVERT_INTERN: {
+                string sId;
                 cout << "Enter Intern ID: ";
-                getline(cin >> ws, id);
-                manager.convertInternToFullTime(id);
+                getline(cin >> ws, sId);
+                managerParm.convertInternToFullTime(sId);
                 break;
             }
 
-            case SEARCH_ID: {
-                string id;
+            case util :: SEARCH_ID: {
+                string sId;
                 cout << "Enter Employee ID: ";
-                getline(cin >> ws, id);
+                getline(cin >> ws, sId);
 
-                XyzEmployee* emp = manager.searchByID(id);
-                if (emp)
-                    emp->printEmployeeDetails();
+                XyzEmployee* sEmp = managerParm.searchByID(sId);
+                if (sEmp)
+                    sEmp->printEmployeeDetails();
                 else
                     cout << "Employee not found.\n";
                 break;
             }
 
-            case SEARCH_NAME: {
-                string name;
+            case util :: SEARCH_NAME: {
+                string sName;
                 cout << "Enter Name: ";
-                getline(cin >> ws, name);
-                manager.searchByName(name);
+                getline(cin >> ws, sName);
+                managerParm.searchByName(sName);
                 break;
             }
 
-            case OTHERS_BACK:
+            case util :: OTHERS_BACK:
                 return;
 
             default:
@@ -196,39 +196,39 @@ void handleOthersMenu(XyzEmployeeManager& manager) {
 
 // Main
 int main() {
-    XyzEmployeeManager manager;
-    int choice;
+    XyzEmployeeManager managerParm;
+    int sChoice;
 
     while (true) {
         displayMainMenu();
-        readValue(choice, "Enter valid choice: ");
+        readValue(sChoice, "Enter valid choice: ");
 
-        switch (choice) {
-            case ADD_EMP:
-                handleAddMenu(manager);
+        switch (sChoice) {
+            case util :: ADD_EMP:
+                handleAddMenu(managerParm);
                 break;
 
-            case REMOVE_EMP: {
-                string id;
+            case util :: REMOVE_EMP: {
+                string sId;
                 cout << "Enter Employee ID: ";
-                getline(cin >> ws, id);
+                getline(cin >> ws, sId);
 
-                if (manager.removeEmployee(id))
+                if (managerParm.removeEmployee(sId))
                     cout << "Employee removed.\n";
                 else
                     cout << "Employee not found.\n";
                 break;
             }
 
-            case EMP_DETAILS:
-                handleDetailsMenu(manager);
+            case util :: EMP_DETAILS:
+                handleDetailsMenu(managerParm);
                 break;
 
-            case OTHERS:
-                handleOthersMenu(manager);
+            case util :: OTHERS:
+                handleOthersMenu(managerParm);
                 break;
 
-            case EXIT_APP:
+            case util :: EXIT_APP:
                 return 0;
 
             default:

@@ -2,7 +2,7 @@
 #define EXTENDED_DEQUE_H
 
 #include "Deque.H"
-// #include <stdexcept>
+#include <stdexcept>
 
 template <class T>
 class ExtendedDeque : public Deque<T> {
@@ -53,16 +53,16 @@ void ExtendedDeque<T>::insertAt(int indexParm, T valueParm) {
 template <class T>
 void ExtendedDeque<T>::removeAt(int indexParm) {
     if (this->empty()) {
-        throw runtime_error("Cannot remove from empty deque");
+        throw std :: runtime_error("Cannot remove from empty deque");
     }
     if (indexParm < 0 || indexParm >= this->mSize) {
-        throw out_of_range("Index out of bounds");
+        throw std :: out_of_range("Index out of bounds");
     }
-    if (indexParm == 0) {
+    if (0 == indexParm) {
         this->popFront();
         return;
     }
-    if (indexParm == this->mSize - 1) {
+    if (this->mSize - 1 == indexParm ) {
         this->popBack();
         return;
     }

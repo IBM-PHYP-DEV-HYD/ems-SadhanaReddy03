@@ -28,56 +28,56 @@ private:
     }
 
 public:
-    static XyzEmployee* createEmployee(int counter, EmployeeType type) {
-        Gender gender = (Gender)getInt(1,2);
+    static XyzEmployee* createEmployee(int counterParm, EmployeeType typeParm) {
+        Gender sGender = (Gender)getInt(1,2);
 
-        Date dob = getRandomDate();
-        Date doj = dob;
-        doj.year += getInt(20,30);
+        Date sDob = getRandomDate();
+        Date sDoj = sDob;
+        sDoj.mYear += getInt(20,30);
 
-        string id = "XYZ";
-        string num = to_string(counter);
-        while (num.length() < 4) num = "0" + num;
-        id += num;
+        string sId = "XYZ";
+        string sNum = to_string(counterParm);
+        while (sNum.length() < 4) sNum = "0" + sNum;
+        sId += sNum;
 
-        if (type == FULL_TIME) id += "F";
-        else if (type == CONTRACTOR) id += "C";
-        else id += "I";
+        if (typeParm == FULL_TIME) sId += "F";
+        else if (typeParm == CONTRACTOR) sId += "C";
+        else sId += "I";
 
-        string name = "Emp" + to_string(counter);
+        string sName = "Emp" + to_string(counterParm);
 
-        XyzEmployee* emp = nullptr;
+        XyzEmployee* sEmp = nullptr;
 
-        if (type == FULL_TIME) {
-            int leaves = getInt(0,22);
-            emp = new XyzFullTimeEmployee(name, id, gender, dob, doj, leaves);
+        if (typeParm == FULL_TIME) {
+            int sLeaves = getInt(0,22);
+            sEmp = new XyzFullTimeEmployee(sName, sId, sGender, sDob, sDoj, sLeaves);
         }
-        else if (type == CONTRACTOR) {
-            Agency agency = (Agency)getInt(1,3);
-            emp = new XyzContractorEmployee(name, id, gender, dob, doj, agency);
+        else if (typeParm == CONTRACTOR) {
+            Agency sAgency = (Agency)getInt(1,3);
+            sEmp = new XyzContractorEmployee(sName, sId, sGender, sDob, sDoj, sAgency);
 
-            Date dol = doj;
-            dol.year += 1;
-            emp->setDOL(dol);
+            Date sDol = sDoj;
+            sDol.mYear += 1;
+            sEmp->setDOL(sDol);
         }
         else {
-            College college = (College)getInt(1,7);
-            Branch branch = (Branch)getInt(1,3);
-            emp = new XyzInternEmployee(name, id, gender, dob, doj, college, branch);
+            College sCollege = (College)getInt(1,7);
+            Branch sBranch = (Branch)getInt(1,3);
+            sEmp = new XyzInternEmployee(sName, sId, sGender, sDob, sDoj, sCollege, sBranch);
 
-            Date dol = doj;
-            dol.month += 6;
-            if (dol.month > 12) {
-                dol.month -= 12;
-                dol.year += 1;
+            Date sDol = sDoj;
+            sDol.mMonth += 6;
+            if (sDol.mMonth > 12) {
+                sDol.mMonth -= 12;
+                sDol.mYear += 1;
             }
-            emp->setDOL(dol);
+            sEmp->setDOL(sDol);
         }
 
-        EmployeeStatus status = (EmployeeStatus)getInt(1,2); // ACTIVE/INACTIVE
-        emp->setStatus(status);
+        EmployeeStatus sStatus = (EmployeeStatus)getInt(1,2); // ACTIVE/INACTIVE
+        sEmp->setStatus(sStatus);
 
-        return emp;
+        return sEmp;
     }
 };
 
