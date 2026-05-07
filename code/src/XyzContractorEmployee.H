@@ -2,7 +2,6 @@
 #define XYZ_CONTRACTOR_EMPLOYEE_H
 #include "XyzEmployee.H"
 #include <iostream>
-using namespace std;
 
 class XyzContractorEmployee : public XyzEmployee {
     private:

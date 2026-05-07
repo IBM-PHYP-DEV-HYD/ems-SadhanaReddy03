@@ -1,5 +1,3 @@
-#ifndef XYZ_CONTRACTOR_EMPLOYEE_C
-#define XYZ_CONTRACTOR_EMPLOYEE_C
 #include "XyzContractorEmployee.H"
 #include <iostream>
 using namespace std;
@@ -14,5 +12,3 @@ void XyzContractorEmployee ::  printEmployeeDetails() const {
     cout << "Agency: " <<  agencyToString(mAgency) << endl;
 }
 XyzContractorEmployee :: ~XyzContractorEmployee() {}
-
-#endif

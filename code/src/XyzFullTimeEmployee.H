@@ -6,11 +6,14 @@ using namespace std;
 class XyzFullTimeEmployee : public XyzEmployee {
     private:
     int mLeavesAvailed;
+    int mTotalLeaves;
     public:
     XyzFullTimeEmployee(string nameParm, string idParm, Gender genderParm, Date dobParm, Date dojParm, int leavesParm);
     void addLeaves(int leavesParm);
     void printEmployeeDetails() const override ;
     int getLeavesAvailed() const;
+    int getTotalLeaves() const;
+    int getLeavesLeft() const;
     virtual ~XyzFullTimeEmployee();
 };
 #endif

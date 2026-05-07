@@ -1,5 +1,3 @@
-#ifndef XYZ_INTERN_EMPLOYEE_C
-#define XYZ_INTERN_EMPLOYEE_C
 #include "XyzEmployee.H"
 #include "XyzInternEmployee.H"
 #include <iostream>
@@ -19,5 +17,3 @@ void XyzInternEmployee :: printEmployeeDetails() const {
     cout << "Branch: " << branchToString(mBranch) << endl;
 }
 XyzInternEmployee :: ~XyzInternEmployee() {}
-
-#endif

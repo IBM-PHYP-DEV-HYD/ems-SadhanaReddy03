@@ -3,7 +3,6 @@
 #include <iostream>
 
 using namespace std;
-// using namespace util;
 
 void displayMainMenu() {
     cout << "\n========================================" << endl;
@@ -55,12 +54,12 @@ void handleAddMenu(XyzEmployeeManager& managerParm) {
         readValue(sChoice, "Enter valid choice: ");
 
         switch (sChoice) {
-            case util :: ADD_RANDOM:
+            case AddMenu :: ADD_RANDOM:
                 managerParm.addEmployee();
                 cout << "Employee added successfully.\n";
                 break;
 
-            case util :: ADD_TYPE: {
+            case AddMenu :: ADD_TYPE: {
                 int sType;
                 cout << "Enter Type (1-FullTime, 2-Contractor, 3-Intern): ";
                 readValue(sType, "Enter 1-3 only: ");
@@ -69,7 +68,7 @@ void handleAddMenu(XyzEmployeeManager& managerParm) {
                 break;
             }
 
-            case util :: ADD_BACK:
+            case AddMenu :: ADD_BACK:
                 return;
 
             default:
@@ -86,11 +85,11 @@ void handleDetailsMenu(XyzEmployeeManager& managerParm) {
         readValue(sChoice, "Enter valid choice: ");
 
         switch (sChoice) {
-            case util :: ALL_EMP:
+            case DetailsMenu :: ALL_EMP:
                 managerParm.printAllEmployees();
                 break;
 
-            case util :: BY_TYPE: {
+            case DetailsMenu :: BY_TYPE: {
                 int sType;
                 cout << "Enter Type (1-FullTime, 2-Contractor, 3-Intern): ";
                 readValue(sType, "Enter 1-3 only: ");
@@ -98,7 +97,7 @@ void handleDetailsMenu(XyzEmployeeManager& managerParm) {
                 break;
             }
 
-            case util :: BY_GENDER: {
+            case DetailsMenu :: BY_GENDER: {
                 int sGender;
                 cout << "Enter Gender (1-Male, 2-Female): ";
                 readValue(sGender, "Enter 1 or 2: ");
@@ -106,7 +105,7 @@ void handleDetailsMenu(XyzEmployeeManager& managerParm) {
                 break;
             }
 
-            case util :: BY_STATUS: {
+            case DetailsMenu :: BY_STATUS: {
                 int mStatus;
                 cout << "Enter Status (1-Active, 2-Inactive, 3-Resigned): ";
                 readValue(mStatus, "Enter 1-3: ");
@@ -118,7 +117,7 @@ void handleDetailsMenu(XyzEmployeeManager& managerParm) {
                 break;
             }
 
-            case util :: BY_ID: {
+            case DetailsMenu :: BY_ID: {
                 string sId;
                 cout << "Enter Employee ID: ";
                 getline(cin >> ws, sId);
@@ -131,7 +130,7 @@ void handleDetailsMenu(XyzEmployeeManager& managerParm) {
                 break;
             }
 
-            case util :: DETAILS_BACK:
+            case DetailsMenu :: DETAILS_BACK:
                 return;
 
             default:
@@ -148,7 +147,7 @@ void handleOthersMenu(XyzEmployeeManager& managerParm) {
         readValue(sChoice, "Enter valid choice: ");
 
         switch (sChoice) {
-            case util :: ADD_LEAVES: {
+            case OthersMenu:: ADD_LEAVES: {
                 int sNLeaves;
                 cout << "Enter leaves to add: ";
                 readValue(sNLeaves, "Enter positive number: ");
@@ -156,7 +155,7 @@ void handleOthersMenu(XyzEmployeeManager& managerParm) {
                 break;
             }
 
-            case util :: CONVERT_INTERN: {
+            case OthersMenu :: CONVERT_INTERN: {
                 string sId;
                 cout << "Enter Intern ID: ";
                 getline(cin >> ws, sId);
@@ -164,7 +163,7 @@ void handleOthersMenu(XyzEmployeeManager& managerParm) {
                 break;
             }
 
-            case util :: SEARCH_ID: {
+            case OthersMenu :: SEARCH_ID: {
                 string sId;
                 cout << "Enter Employee ID: ";
                 getline(cin >> ws, sId);
@@ -177,7 +176,7 @@ void handleOthersMenu(XyzEmployeeManager& managerParm) {
                 break;
             }
 
-            case util :: SEARCH_NAME: {
+            case OthersMenu :: SEARCH_NAME: {
                 string sName;
                 cout << "Enter Name: ";
                 getline(cin >> ws, sName);
@@ -185,7 +184,7 @@ void handleOthersMenu(XyzEmployeeManager& managerParm) {
                 break;
             }
 
-            case util :: OTHERS_BACK:
+            case OthersMenu :: OTHERS_BACK:
                 return;
 
             default:
@@ -204,11 +203,11 @@ int main() {
         readValue(sChoice, "Enter valid choice: ");
 
         switch (sChoice) {
-            case util :: ADD_EMP:
+            case MainMenu :: ADD_EMP:
                 handleAddMenu(managerParm);
                 break;
 
-            case util :: REMOVE_EMP: {
+            case MainMenu :: REMOVE_EMP: {
                 string sId;
                 cout << "Enter Employee ID: ";
                 getline(cin >> ws, sId);
@@ -220,15 +219,15 @@ int main() {
                 break;
             }
 
-            case util :: EMP_DETAILS:
+            case MainMenu :: EMP_DETAILS:
                 handleDetailsMenu(managerParm);
                 break;
 
-            case util :: OTHERS:
+            case MainMenu :: OTHERS:
                 handleOthersMenu(managerParm);
                 break;
 
-            case util :: EXIT_APP:
+            case MainMenu :: EXIT_APP:
                 return 0;
 
             default:

@@ -1,6 +1,5 @@
 #include "XyzEmployee.H"
 #include <iostream>
-using namespace std;
 using namespace util;
 
 XyzEmployee::XyzEmployee(string nameParm, string idParm, EmployeeType typeParm,
