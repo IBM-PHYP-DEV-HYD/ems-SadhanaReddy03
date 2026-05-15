@@ -40,19 +40,19 @@ public:
         while (sNum.length() < 4) sNum = "0" + sNum;
         sId += sNum;
 
-        if (typeParm == FULL_TIME) sId += "F";
-        else if (typeParm == CONTRACTOR) sId += "C";
+        if (EmployeeType::FULL_TIME == typeParm) sId += "F";
+        else if (EmployeeType::CONTRACTOR == typeParm) sId += "C";
         else sId += "I";
 
         string sName = "Emp" + to_string(counterParm);
 
         XyzEmployee* sEmp = nullptr;
 
-        if (typeParm == FULL_TIME) {
+        if (EmployeeType::FULL_TIME == typeParm) {
             int sLeaves = getInt(0,22);
             sEmp = new XyzFullTimeEmployee(sName, sId, sGender, sDob, sDoj, sLeaves);
         }
-        else if (typeParm == CONTRACTOR) {
+        else if (EmployeeType::CONTRACTOR == typeParm) {
             Agency sAgency = (Agency)getInt(1,3);
             sEmp = new XyzContractorEmployee(sName, sId, sGender, sDob, sDoj, sAgency);
 

@@ -66,7 +66,7 @@ void XyzEmployeeManager::addEmployee(EmployeeType typeParm) {
 // Remove employee
 bool XyzEmployeeManager::removeEmployee(const string& idParm) {
     for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
-        if (mActiveEmployees[sIndex]->getID() == idParm) {
+        if (idParm == mActiveEmployees[sIndex]->getID()) {
             XyzEmployee* sOld = mActiveEmployees[sIndex];
             XyzEmployee* sMinimal = new XyzEmployee(
                 sOld->getName(),
@@ -90,6 +90,11 @@ bool XyzEmployeeManager::removeEmployee(const string& idParm) {
     return false;
 }
 
+void printSummaryHeader() {
+    cout << "--------------------------------------------------------------------------------------------------" << endl;
+    cout << "| Employee Name | ID | Type | Status | Gender | Date of Birth | Date of Joining |" << endl;
+    cout << "--------------------------------------------------------------------------------------------------" << endl;
+}
 
 void XyzEmployeeManager::printAllEmployees() {
     if (mActiveEmployees.size() == 0 && mResignedEmployees.size() == 0) {
@@ -98,9 +103,9 @@ void XyzEmployeeManager::printAllEmployees() {
     }
     if (mActiveEmployees.size() > 0) {
         cout << "\n--- Active / Inactive Employees ---\n";
+        printSummaryHeader();
         for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
-            mActiveEmployees[sIndex]->printEmployeeDetails();
-            cout << "----------------\n";
+            mActiveEmployees[sIndex]->printEmployeeSummary();
         }
     } else {
         cout << "\nNo active/inactive employees.\n";
@@ -108,9 +113,9 @@ void XyzEmployeeManager::printAllEmployees() {
 
     if (mResignedEmployees.size() > 0) {
         cout << "\n--- Resigned Employees ---\n";
+        printSummaryHeader();
         for (int sIndex = 0; sIndex < mResignedEmployees.size(); sIndex++) {
-            mResignedEmployees[sIndex]->printEmployeeDetails();
-            cout << "----------------\n";
+            mResignedEmployees[sIndex]->printEmployeeSummary();
         }
     } else {
         cout << "\nNo resigned employees.\n";
@@ -119,11 +124,10 @@ void XyzEmployeeManager::printAllEmployees() {
 
 void XyzEmployeeManager::printByType(EmployeeType typeParm) {
     bool sFound = false;
-
+    printSummaryHeader();
     for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
         if (typeParm == mActiveEmployees[sIndex]->getType()){
-            mActiveEmployees[sIndex]->printEmployeeDetails();
-            cout<<"--------------------------"<<endl;
+            mActiveEmployees[sIndex]->printEmployeeSummary();
             sFound = true;
         }
     }
@@ -134,10 +138,10 @@ void XyzEmployeeManager::printByType(EmployeeType typeParm) {
 
 void XyzEmployeeManager::printByStatus(EmployeeStatus statusParm) {
     bool sFound = false;
+    printSummaryHeader();
     for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
-        if (mActiveEmployees[sIndex]->getStatus() == statusParm){
-            mActiveEmployees[sIndex]->printEmployeeDetails();
-            cout<<"---------------------------"<<endl;
+        if (statusParm == mActiveEmployees[sIndex]->getStatus()){
+            mActiveEmployees[sIndex]->printEmployeeSummary();
             sFound=true;
         }
     }
@@ -148,10 +152,10 @@ void XyzEmployeeManager::printByStatus(EmployeeStatus statusParm) {
 
 void XyzEmployeeManager::printByGender(Gender genderParm) {
     bool sFound = false;
+    printSummaryHeader();
     for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
-        if (mActiveEmployees[sIndex]->getGender() == genderParm){
-            mActiveEmployees[sIndex]->printEmployeeDetails();
-            cout<<"--------------------------------------"<<endl;
+        if (genderParm == mActiveEmployees[sIndex]->getGender()){
+            mActiveEmployees[sIndex]->printEmployeeSummary();
             sFound = true;
         }
     }
@@ -161,23 +165,24 @@ void XyzEmployeeManager::printByGender(Gender genderParm) {
 }
 
 void XyzEmployeeManager::printResignedEmployees() {
-    if (mResignedEmployees.size() == 0) {
+    if (0 == mResignedEmployees.size()) {
         cout << "No resigned employees.\n";
         return;
     }
+    printSummaryHeader();
     for (int sIndex = 0; sIndex < mResignedEmployees.size(); sIndex++) {
-        mResignedEmployees[sIndex]->printEmployeeDetails();
+        mResignedEmployees[sIndex]->printEmployeeSummary();
     }
 }
 
 // Search
 XyzEmployee* XyzEmployeeManager::searchByID(const string& idParm) {
     for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
-        if (mActiveEmployees[sIndex]->getID() == idParm)
+        if (idParm == mActiveEmployees[sIndex]->getID())
             return mActiveEmployees[sIndex];
     }
     for(int sIndex = 0; sIndex < mResignedEmployees.size(); sIndex++) {
-        if (mResignedEmployees[sIndex]->getID() == idParm)
+        if (idParm == mResignedEmployees[sIndex]->getID())
             return mResignedEmployees[sIndex];
     }
     return nullptr;
@@ -189,16 +194,18 @@ void XyzEmployeeManager::searchByName(const string& nameParm) {
 
     for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
         if (mActiveEmployees[sIndex]->getName().find(nameParm) != string::npos) {
+            cout << "--------------------------------------\n";
             mActiveEmployees[sIndex]->printEmployeeDetails();
-            cout << "----------------\n";
+            cout << "--------------------------------------\n";
             sFound = true;
         }
     }
 
     for (int sIndex = 0; sIndex < mResignedEmployees.size(); sIndex++) {
         if (mResignedEmployees[sIndex]->getName().find(nameParm) != string::npos) {
+            cout << "--------------------------------------\n";
             mResignedEmployees[sIndex]->printEmployeeDetails();
-            cout << "----------------\n";
+            cout << "--------------------------------------\n";
             sFound = true;
         }
     }
@@ -212,8 +219,8 @@ void XyzEmployeeManager::searchByName(const string& nameParm) {
 void XyzEmployeeManager::addLeavesToAllFullTimeEmployees(int nLeavesParm) {
     if(nLeavesParm<=0) return;
     for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
-        if (mActiveEmployees[sIndex]->getType() == FULL_TIME) {
-            auto sFullTimeEmp = dynamic_cast<XyzFullTimeEmployee*>(mActiveEmployees[sIndex]);
+        if (EmployeeType::FULL_TIME == mActiveEmployees[sIndex]->getType()) {
+            XyzFullTimeEmployee* sFullTimeEmp = dynamic_cast<XyzFullTimeEmployee*>(mActiveEmployees[sIndex]);
             if (sFullTimeEmp) sFullTimeEmp->addLeaves(nLeavesParm);
         }
     }
@@ -223,8 +230,7 @@ void XyzEmployeeManager::convertInternToFullTime(const string& idParm) {
     for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
         if (mActiveEmployees[sIndex]->getID() == idParm &&
             mActiveEmployees[sIndex]->getType() == EmployeeType :: INTERN) {
-
-            auto sInternEmp = dynamic_cast<XyzInternEmployee*>(mActiveEmployees[sIndex]);
+            XyzInternEmployee* sInternEmp = dynamic_cast<XyzInternEmployee*>(mActiveEmployees[sIndex]);
             if(!sInternEmp) return;
 
             string sOldID= sInternEmp->getID();

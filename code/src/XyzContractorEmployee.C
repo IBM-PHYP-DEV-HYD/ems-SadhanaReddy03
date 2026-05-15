@@ -9,6 +9,6 @@ Agency XyzContractorEmployee :: getAgency() const {
 }
 void XyzContractorEmployee ::  printEmployeeDetails() const {
     XyzEmployee::printEmployeeDetails();
-    cout << "Agency: " <<  agencyToString(mAgency) << endl;
+    cout << "External Agency : " <<  agencyToString(mAgency) << endl;
 }
 XyzContractorEmployee :: ~XyzContractorEmployee() {}

@@ -9,8 +9,8 @@ void XyzFullTimeEmployee :: addLeaves(int leavesParm) {
 }
 void XyzFullTimeEmployee :: printEmployeeDetails() const{
     XyzEmployee::printEmployeeDetails();
-    cout << "Leaves Availed: " << mLeavesAvailed << endl;
-    cout<< "Leaves Left: " << getLeavesLeft() << endl;
+    cout << "Leaves Availed : " << mLeavesAvailed << endl;
+    cout<< "Leaves Left    : " << getLeavesLeft() << endl;
     cout<< "Total Leaves: " << mTotalLeaves << endl;
 }
 int XyzFullTimeEmployee :: getLeavesAvailed() const {

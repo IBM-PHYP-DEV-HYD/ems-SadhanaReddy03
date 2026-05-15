@@ -77,18 +77,18 @@ namespace util{
         ECE
     };
     inline string genderToString(Gender gParm) {
-        return (MALE == gParm) ? "Male" : "Female";
+        return (Gender::MALE == gParm) ? "Male" : "Female";
     }
 
     inline string statusToString(EmployeeStatus sParm) {
-        if (sParm == ACTIVE) return "Active";
-        if (sParm == INACTIVE) return "Inactive";
+        if (EmployeeStatus::ACTIVE == sParm) return "Active";
+        if (EmployeeStatus::INACTIVE == sParm) return "Inactive";
         return "Resigned";
     }
 
     inline string typeToString(EmployeeType tParm) {
-        if (tParm == FULL_TIME) return "Full-Time";
-        if (tParm == CONTRACTOR) return "Contractor";
+        if (EmployeeType::FULL_TIME == tParm) return "Full-Time";
+        if (EmployeeType::CONTRACTOR == tParm) return "Contractor";
         return "Intern";
     }
 

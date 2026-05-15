@@ -22,7 +22,7 @@ public:
     virtual void setDOL(const Date& dolParm) = 0;
 
     virtual void printEmployeeDetails() const = 0;
-
+    virtual void printEmployeeSummary() const = 0;
     virtual ~XyzEmployeeIF() {}
 };
 

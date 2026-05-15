@@ -48,19 +48,42 @@ void XyzEmployee::setDOL(const Date& dolParm) {
 }
 
 void XyzEmployee::printEmployeeDetails() const {
-    cout << "Name: " << mName << endl;
-    cout << "ID: " << mID << endl;
-    cout << "Type: " << typeToString(mType) << endl;
-    cout << "Gender: " << genderToString(mGender) << endl;
-    cout << "Status: " << statusToString(mStatus) << endl;
+    
+    cout << "Employee Name   : " << mName << endl;
+    cout << "Employee ID     : " << mID << endl;
+    cout << "Employee Type   : " << typeToString(mType) << endl;
+    cout << "Employee Status : " << statusToString(mStatus) << endl;
+    cout << "Gender          : " << genderToString(mGender) << endl;
 
-    cout << "DOB: " << mDOB.mDay << "/" << mDOB.mMonth << "/" << mDOB.mYear << endl;
-    cout << "DOJ: " << mDOJ.mDay << "/" << mDOJ.mMonth << "/" << mDOJ.mYear << endl;
+    cout << "Date of Birth   : "
+        << mDOB.mDay << "/"
+        << mDOB.mMonth << "/"
+        << mDOB.mYear << endl;
 
-    if (mDOL.mYear != 0)
-        cout << "DOL: " << mDOL.mDay << "/" << mDOL.mMonth << "/" << mDOL.mYear << endl;
+    cout << "Date of Joining : "
+        << mDOJ.mDay << "/"
+        << mDOJ.mMonth << "/"
+        << mDOJ.mYear << endl;
+
+    if (0 != mDOL.mYear) {
+        cout << "Date of Leaving : "
+            << mDOL.mDay << "/"
+            << mDOL.mMonth << "/"
+            << mDOL.mYear << endl;
+    }
     else
         cout << "DOL: NA" << endl;
 }
 
+void XyzEmployee::printEmployeeSummary() const {
+    cout << "| "
+         << mName << " | "
+         << mID << " | "
+         << typeToString(mType) << " | "
+         << statusToString(mStatus) << " | "
+         << genderToString(mGender) << " | "
+         << mDOB.mDay << "/" << mDOB.mMonth << "/" << mDOB.mYear << " | "
+         << mDOJ.mDay << "/" << mDOJ.mMonth << "/" << mDOJ.mYear << " |"
+         << endl;
+}
 XyzEmployee::~XyzEmployee() {}

@@ -13,7 +13,7 @@ Branch XyzInternEmployee :: getBranch() const {
 }
 void XyzInternEmployee :: printEmployeeDetails() const {
     XyzEmployee::printEmployeeDetails();
-    cout << "College: " << collegeToString(mCollege) << endl;
-    cout << "Branch: " << branchToString(mBranch) << endl;
+    cout << "College : " << collegeToString(mCollege) << endl;
+    cout << "Branch  : " << branchToString(mBranch) << endl;
 }
 XyzInternEmployee :: ~XyzInternEmployee() {}
