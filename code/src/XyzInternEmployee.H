@@ -13,6 +13,7 @@ class XyzInternEmployee : public XyzEmployee {
         College getCollege() const;
         Branch getBranch() const;
         void printEmployeeDetails() const override;
+        void printEmployeeSummary() const override ;
         virtual ~XyzInternEmployee();
 };
 #endif

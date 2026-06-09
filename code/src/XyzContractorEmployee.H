@@ -10,6 +10,7 @@ class XyzContractorEmployee : public XyzEmployee {
         XyzContractorEmployee(string nameParm, string idParm,Gender genderParm,Date dobParm, Date dojParm, Agency agencyParm);
         Agency getAgency() const ;
         void printEmployeeDetails() const override;
+        void printEmployeeSummary() const override ;
         virtual ~XyzContractorEmployee();
 };
 #endif

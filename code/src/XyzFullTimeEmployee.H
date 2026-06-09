@@ -11,6 +11,7 @@ class XyzFullTimeEmployee : public XyzEmployee {
     XyzFullTimeEmployee(string nameParm, string idParm, Gender genderParm, Date dobParm, Date dojParm, int leavesParm);
     void addLeaves(int leavesParm);
     void printEmployeeDetails() const override ;
+    void printEmployeeSummary() const override ;
     int getLeavesAvailed() const;
     int getTotalLeaves() const;
     int getLeavesLeft() const;

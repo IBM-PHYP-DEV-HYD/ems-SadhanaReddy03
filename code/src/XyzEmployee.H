@@ -1,6 +1,8 @@
 #ifndef XYZ_EMPLOYEE_H
 #define XYZ_EMPLOYEE_H
 #include<iostream>
+#include <iomanip>
+#include <sstream>
 #include "XyzEmployeeIF.H"
 #include "utils.H"
 using namespace util;

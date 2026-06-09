@@ -2,6 +2,8 @@
 #include "XyzEmployeeFactory.H"
 #include <iostream>
 #include <random>
+#include <iomanip>
+#include <sstream>
 
 using namespace std;
 // using namespace util;
@@ -77,9 +79,17 @@ bool XyzEmployeeManager::removeEmployee(const string& idParm) {
                 sOld->getDOJ()
             );
             sMinimal->setStatus(RESIGNED);
-            Date sDol = sOld->getDOJ();
-            sDol.mYear += 2;
-
+            Date sDol;
+            if (sOld->getType() == CONTRACTOR ||
+                sOld->getType() == INTERN) 
+            {
+                sDol = sOld->getDOL();
+            }
+            else
+            {
+                sDol = sOld->getDOJ();
+                sDol.mYear += rng.getInt(1, 10);
+            }
             sMinimal->setDOL(sDol);
             mResignedEmployees.pushBack(sMinimal);
             delete sOld;
@@ -91,9 +101,25 @@ bool XyzEmployeeManager::removeEmployee(const string& idParm) {
 }
 
 void printSummaryHeader() {
-    cout << "--------------------------------------------------------------------------------------------------" << endl;
-    cout << "| Employee Name | ID | Type | Status | Gender | Date of Birth | Date of Joining |" << endl;
-    cout << "--------------------------------------------------------------------------------------------------" << endl;
+    cout << string(190, '-') << endl;
+
+    cout << left
+         << "|" << setw(12) << "Name"
+         << "|" << setw(12) << "ID"
+         << "|" << setw(12) << "Type"
+         << "|" << setw(12) << "Status"
+         << "|" << setw(10) << "Gender"
+         << "|" << setw(12) << "DOB"
+         << "|" << setw(12) << "DOJ"
+         << "|" << setw(15) << "Leaves Availed"
+         << "|" << setw(12) << "Leaves Left"
+         << "|" << setw(18) << "Agency"
+         << "|" << setw(18) << "College"
+         << "|" << setw(10) << "Branch"
+         << "|" << setw(12) << "DOL"
+         << "|" << endl;
+
+    cout << string(190, '-') << endl;
 }
 
 void XyzEmployeeManager::printAllEmployees() {
