@@ -11,6 +11,7 @@ class XyzContractorEmployee : public XyzEmployee {
         Agency getAgency() const ;
         void printEmployeeDetails() const override;
         void printEmployeeSummary() const override ;
+        void printEmployeeTypeSummary() const override;
         virtual ~XyzContractorEmployee();
 };
 #endif

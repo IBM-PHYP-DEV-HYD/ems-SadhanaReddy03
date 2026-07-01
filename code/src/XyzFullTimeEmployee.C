@@ -48,5 +48,26 @@ void XyzFullTimeEmployee::printEmployeeSummary() const {
          << "|" << setw(12) << "NA"
          << "|" << endl;
 }
+void XyzFullTimeEmployee::printEmployeeTypeSummary() const {
 
+    string sDob = to_string(mDOB.mDay) + "/" +
+                  to_string(mDOB.mMonth) + "/" +
+                  to_string(mDOB.mYear);
+
+    string sDoj = to_string(mDOJ.mDay) + "/" +
+                  to_string(mDOJ.mMonth) + "/" +
+                  to_string(mDOJ.mYear);
+
+    cout << left
+         << "|" << setw(12) << mName
+         << "|" << setw(12) << mID
+         << "|" << setw(12) << typeToString(mType)
+         << "|" << setw(12) << statusToString(mStatus)
+         << "|" << setw(10) << genderToString(mGender)
+         << "|" << setw(12) << sDob
+         << "|" << setw(12) << sDoj
+         << "|" << setw(15) << mLeavesAvailed
+         << "|" << setw(12) << getLeavesLeft()
+         << "|" << endl;
+}
 XyzFullTimeEmployee :: ~XyzFullTimeEmployee() {}

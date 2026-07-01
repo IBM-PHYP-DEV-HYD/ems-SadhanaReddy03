@@ -33,6 +33,7 @@ class XyzEmployee : public XyzEmployeeIF {
     void setDOL(const Date& dolParm) override;
     virtual void printEmployeeDetails() const override;
     virtual void printEmployeeSummary() const override;
+    virtual void printEmployeeTypeSummary() const override;
     virtual ~XyzEmployee();
 };
 

@@ -14,6 +14,7 @@ class XyzInternEmployee : public XyzEmployee {
         Branch getBranch() const;
         void printEmployeeDetails() const override;
         void printEmployeeSummary() const override ;
+        void printEmployeeTypeSummary() const override;
         virtual ~XyzInternEmployee();
 };
 #endif

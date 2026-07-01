@@ -23,6 +23,7 @@ public:
 
     virtual void printEmployeeDetails() const = 0;
     virtual void printEmployeeSummary() const = 0;
+    virtual void printEmployeeTypeSummary() const = 0;
     virtual ~XyzEmployeeIF() {}
 };
 

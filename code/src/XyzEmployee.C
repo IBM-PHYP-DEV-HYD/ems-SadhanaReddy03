@@ -109,4 +109,7 @@ void XyzEmployee::printEmployeeSummary() const {
          << "|" << setw(12) << sDol
          << "|" << endl;
 }
+void XyzEmployee::printEmployeeTypeSummary() const {
+    printEmployeeSummary();
+}
 XyzEmployee::~XyzEmployee() {}

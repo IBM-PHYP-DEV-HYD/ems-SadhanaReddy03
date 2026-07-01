@@ -122,6 +122,61 @@ void printSummaryHeader() {
     cout << string(190, '-') << endl;
 }
 
+void printFullTimeHeader() {
+    cout << string(120, '-') << endl;
+
+    cout << left
+         << "|" << setw(12) << "Name"
+         << "|" << setw(12) << "ID"
+         << "|" << setw(12) << "Type"
+         << "|" << setw(12) << "Status"
+         << "|" << setw(10) << "Gender"
+         << "|" << setw(12) << "DOB"
+         << "|" << setw(12) << "DOJ"
+         << "|" << setw(15) << "Leaves Availed"
+         << "|" << setw(12) << "Leaves Left"
+         << "|" << endl;
+
+    cout << string(120, '-') << endl;
+}
+
+void printContractorHeader() {
+    cout << string(120, '-') << endl;
+
+    cout << left
+         << "|" << setw(12) << "Name"
+         << "|" << setw(12) << "ID"
+         << "|" << setw(12) << "Type"
+         << "|" << setw(12) << "Status"
+         << "|" << setw(10) << "Gender"
+         << "|" << setw(12) << "DOB"
+         << "|" << setw(12) << "DOJ"
+         << "|" << setw(18) << "Agency"
+         << "|" << setw(12) << "DOL"
+         << "|" << endl;
+
+    cout << string(120, '-') << endl;
+}
+
+void printInternHeader() {
+    cout << string(135, '-') << endl;
+
+    cout << left
+         << "|" << setw(12) << "Name"
+         << "|" << setw(12) << "ID"
+         << "|" << setw(12) << "Type"
+         << "|" << setw(12) << "Status"
+         << "|" << setw(10) << "Gender"
+         << "|" << setw(12) << "DOB"
+         << "|" << setw(12) << "DOJ"
+         << "|" << setw(18) << "College"
+         << "|" << setw(10) << "Branch"
+         << "|" << setw(12) << "DOL"
+         << "|" << endl;
+
+    cout << string(135, '-') << endl;
+}
+
 void XyzEmployeeManager::printAllEmployees() {
     if (mActiveEmployees.size() == 0 && mResignedEmployees.size() == 0) {
         cout << "No employees available.\n";
@@ -150,10 +205,15 @@ void XyzEmployeeManager::printAllEmployees() {
 
 void XyzEmployeeManager::printByType(EmployeeType typeParm) {
     bool sFound = false;
-    printSummaryHeader();
+    if (FULL_TIME == typeParm)
+        printFullTimeHeader();
+    else if (CONTRACTOR == typeParm)
+        printContractorHeader();
+    else
+        printInternHeader();
     for (int sIndex = 0; sIndex < mActiveEmployees.size(); sIndex++) {
         if (typeParm == mActiveEmployees[sIndex]->getType()){
-            mActiveEmployees[sIndex]->printEmployeeSummary();
+            mActiveEmployees[sIndex]->printEmployeeTypeSummary();
             sFound = true;
         }
     }
